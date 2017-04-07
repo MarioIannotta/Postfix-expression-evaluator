@@ -2,11 +2,10 @@
 Evaluate postfix expression with Python.
 
 # What is a postfix expression?
-tl;dr:
-Instead of write `(3 + 4) * 5` you write `3 4 + 5 *`.
-
 From wikipedia: _"A postfix expression AKA reverse polish expression is a mathematical notation in which every operator follows all of its operands, in contrast to Polish notation (PN), which puts the operator before its operands."_ 
 [You can read more about it here here](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
+
+Basically, instead of write `(3 + 4) * 5` you write `3 4 + 5 *`.
 
 # Why
 An expression written in postfix notation is easier to evaluate than a standard one because you haven't to consider parenthesis.
