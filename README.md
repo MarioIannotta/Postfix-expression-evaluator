@@ -23,11 +23,13 @@ For a given string rappresenting a postfix expression, the script will calculate
 
 Run the script with 
 ```
-python ./postfix.py
+python ./postfix.py "your expression here"
 ```
 
-The result should look like this
+Here's an example
 ```
+python ./postfix.py "1 ln 2 + 3 * 4 sqrt 5 + cos - 6 4 * ln sqrt 4 + +"
+
 Evaluating >> 1 ln 2 + 3 * 4 sqrt 5 + cos - 6 4 * ln sqrt 4 + +
 
 Is valid
