@@ -1,4 +1,7 @@
 # Copyright (C) 2016 Mario Iannotta <info@marioiannotta.com>
+#!/usr/bin/python
+
+import sys
 
 import math
 import string
@@ -418,70 +421,6 @@ def get_depth_indexes_list(tree):
 
     return depth_indexes_list
 
-def get_depth_map_old(tree):
-
-    array = []
-    depth = get_depth(tree)
-
-    #0
-    array.append(tree[0])
-
-    children = get_children(tree)
-    array.append(children)
-
-    #1
-    children = get_children_with_indexes(tree, [])
-
-    array.append(children)
-
-    #2
-    children = get_children_with_indexes(tree, [1])
-    children += get_children_with_indexes(tree, [2])
-
-    array.append(children)
-
-    #3
-    children = get_children_with_indexes(tree, [1, 1])
-    children += get_children_with_indexes(tree, [1, 2])
-    children += get_children_with_indexes(tree, [2, 1])
-    children += get_children_with_indexes(tree, [2, 2])
-
-    array.append(children)
-
-    #4
-    children = get_children_with_indexes(tree, [1, 1, 1])
-    children += get_children_with_indexes(tree, [1, 1, 2])
-    children += get_children_with_indexes(tree, [1, 2, 1])
-    children += get_children_with_indexes(tree, [1, 2, 2])
-    children += get_children_with_indexes(tree, [2, 1, 1])
-    children += get_children_with_indexes(tree, [2, 1, 2])
-    children += get_children_with_indexes(tree, [2, 2, 1])
-    children += get_children_with_indexes(tree, [2, 2, 2])
-
-    array.append(children)
-
-    #5
-    children = get_children_with_indexes(tree, [1, 1, 1, 1])
-    children += get_children_with_indexes(tree, [1, 1, 1, 1])
-    children += get_children_with_indexes(tree, [1, 1, 2, 1])
-    children += get_children_with_indexes(tree, [1, 1, 2, 2])
-    children += get_children_with_indexes(tree, [1, 2, 1, 1])
-    children += get_children_with_indexes(tree, [1, 2, 1, 2])
-    children += get_children_with_indexes(tree, [1, 2, 2, 1])
-    children += get_children_with_indexes(tree, [1, 2, 2, 2])
-    children += get_children_with_indexes(tree, [2, 1, 1, 1])
-    children += get_children_with_indexes(tree, [2, 1, 1, 2])
-    children += get_children_with_indexes(tree, [2, 1, 2, 1])
-    children += get_children_with_indexes(tree, [2, 1, 2, 2])
-    children += get_children_with_indexes(tree, [2, 2, 1, 1])
-    children += get_children_with_indexes(tree, [2, 2, 1, 2])
-    children += get_children_with_indexes(tree, [2, 2, 2, 1])
-    children += get_children_with_indexes(tree, [2, 2, 2, 2])
-
-    array.append(children)
-
-    return array
-
 def get_children_with_indexes(tree, indexes):
 
     for index in indexes:
@@ -512,9 +451,6 @@ def get_children(tree):
         else:
             children.append([])
 
-    # print("\nevaluating tree: " + str(tree))
-    # print("children: " + str(children))
-
     return children
 
 def get_empty_spaces(number, next_string_lenght):
@@ -526,36 +462,40 @@ def get_empty_spaces(number, next_string_lenght):
     return empty_spaces
 
 if __name__ == "__main__":
-
-    str_expr = "1 ln 2 + 3 * 4 sqrt 5 + cos - 6 4 * ln sqrt 4 + +"
-    # str_expr = "1 sin 2 ^ 1 cos 2 ^ + tan"
-
-    token_list = get_token_list(str_expr)
-    is_valid = is_token_list_valid(token_list)
-
-    print("\nEvaluating >> " + str_expr + "\n")
-
-    if is_valid:
-        print("Is valid")
+    
+    if len(sys.argv) != 2:
+        print("\nInvalid syntax - usage: python ./postfix.py \"your expression here\"\n")
+    
     else:
-        print("Is not valid.\n")
-        raise SystemExit, 0
+    
+        str_expr = sys.argv[1]
 
-    tree = get_syntax_tree(token_list)
+        token_list = get_token_list(str_expr)
+        is_valid = is_token_list_valid(token_list)
 
-    print("\nraw tree:")
-    print(tree)
+        print("\nEvaluating >> " + str_expr + "\n")
 
-    print("\nformatted tree:")
-    print_tree(tree)
+        if is_valid:
+            print("Is valid")
+        else:
+            print("Is not valid.\n")
+            raise SystemExit, 0
 
-    print("\nresult:")
-    print(evaluate_tree(tree))
+        tree = get_syntax_tree(token_list)
 
-    print("\ndepth:")
-    print(get_depth(tree))
+        print("\nraw tree:")
+        print(tree)
 
-    print("\ntree structure")
-    print_tree_structure(tree)
+        print("\nformatted tree:")
+        print_tree(tree)
 
-    print("\n")
+        print("\nresult:")
+        print(evaluate_tree(tree))
+
+        print("\ndepth:")
+        print(get_depth(tree))
+
+        print("\ntree structure")
+        print_tree_structure(tree)
+
+        print("\n")
