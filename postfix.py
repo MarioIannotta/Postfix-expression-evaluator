@@ -57,7 +57,7 @@ def leaf(item):
 def get_token_list(string):
     return list(string.split(" "))
 
-def is_token_a_number(token): # controlla se il token e float, int, e, pi
+def is_token_a_number(token): # check if the token is float, int, e or pi
     return is_int(token) or is_float(token) or token == "e" or token == "pi"
 
 def is_a_binary_operator(token):
