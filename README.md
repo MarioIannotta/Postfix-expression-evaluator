@@ -8,7 +8,7 @@ From wikipedia: _"A postfix expression AKA reverse polish expression is a mathem
 Basically, instead of write `(3 + 4) * 5` you write `3 4 + 5 *`.
 
 # Why
-An expression written in postfix notation is easier to evaluate than a standard one because you haven't to consider parenthesis.
+An expression written in postfix notation is easier to evaluate than a standard one because you don't have to consider parenthesis.
 
 # How does the script works?
 For a given string rappresenting a postfix expression, the script will calculate 
